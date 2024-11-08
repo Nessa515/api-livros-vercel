@@ -5,8 +5,8 @@ class livrosRepository{
         return await Livros.find(filtro);
     }
 
-    static async findOne(id){
-        return await Livros.findById(id);
+    static async create(data){
+        return await Livros.create(data);
     }
 }
 

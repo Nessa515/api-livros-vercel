@@ -20,6 +20,29 @@ class livrosController{
             return res.status(error.code || 500).json(error);
         }
     }
+
+    static async inserir(req, res){
+        try {
+            const {titulo, autor, genero, ano} = req.body;
+
+            if(!titulo || !autor || !genero || !ano){
+                return res.status(400).json({message: "É necessário preencher todos os campos"});
+            }
+
+            const data = {
+                titulo,
+                autor,
+                genero,
+                ano
+            };
+
+            const response = await livrosService.inserir(data);
+            return res.status(201).json(response);
+
+        } catch (error) {
+            return res.status(error.code || 500).json(error);
+        }
+    }
 }
 
 export default livrosController;
