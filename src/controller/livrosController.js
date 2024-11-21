@@ -85,9 +85,15 @@ class livrosController{
 
     static async deletar(req, res){
         try {
-            const {id} = req.params;
+            const { id } = req.params;
+
             const response = await livrosService.delete(id);
-            return res.status(200).json(response);
+
+            if (response.deletedCount === 0) {
+                return res.status(404).json({ message: 'Livro não encontrado' });
+            }
+            
+            return res.status(200).json({ message: 'Livro deletado com sucesso' }); 
 
         } catch (error) {
             return res.status(error.code || 500).json(error);
