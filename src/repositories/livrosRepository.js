@@ -10,11 +10,11 @@ class livrosRepository{
     }
 
     static async findById(id){
-        return await Livros.findById(id);
+        return await Livros.findOne({_id: id});
     }
 
     static async update(id, data){
-        return await Livros.updateMany({_id: id}, data);
+        return await Livros.findByIdAndUpdate(id, data, {new: true});
     }
 
     static async delete(id){

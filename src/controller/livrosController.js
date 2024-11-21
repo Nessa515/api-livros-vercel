@@ -13,7 +13,7 @@ class livrosController{
                 genero,
                 ano
             };
-            const response = await livrosService.findMany(filtro);
+            const response = await livrosService.findMany({});
             return res.status(200).json(response);
 
         } catch (error) {
@@ -60,8 +60,12 @@ class livrosController{
             const {id} = req.params;
             const {titulo, autor, genero, ano} = req.body;
 
-            if(!titulo || !autor || !genero || !ano){
-                return res.status(400).json({message: "É necessário preencher todos os campos"});
+            // if(!titulo || !autor || !genero || !ano){
+            //     return res.status(400).json({message: "É necessário preencher todos os campos"});
+            // }
+
+            if (!id) {
+            return res.status(400).json({ message: "ID é obrigatório" });
             }
 
             const data = {
