@@ -14,7 +14,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
         // Inicia o servidor após a conexão com o banco de dados
         app.listen(port, () => {
-            console.log(`Servidor rodando na porta ${port}`);
+            console.log(`Servidor rodando na porta http://localhost:${port}`);
         });
     })
     .catch((error) => {

@@ -1,0 +1,257 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API de Livros",
+      "description": "API para gerenciamento de livros, permitindo listar, inserir, atualizar, buscar por ID e deletar livros.",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/livros": {
+        "get": {
+          "summary": "Listar livros",
+          "description": "Retorna todos os livros ou permite filtrar por atributos específicos.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "query",
+              "description": "ID do livro",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "titulo",
+              "in": "query",
+              "description": "Título do livro",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "autor",
+              "in": "query",
+              "description": "Autor do livro",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "genero",
+              "in": "query",
+              "description": "Gênero do livro",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "ano",
+              "in": "query",
+              "description": "Ano de publicação do livro",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Lista de livros encontrada com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Livro"
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno do servidor"
+            }
+          }
+        },
+        "post": {
+          "summary": "Inserir livro",
+          "description": "Insere um novo livro no sistema.",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Livro"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Livro criado com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Livro"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Requisição inválida (campos obrigatórios não preenchidos)"
+            },
+            "500": {
+              "description": "Erro interno do servidor"
+            }
+          }
+        }
+      },
+      "/livros/{id}": {
+        "get": {
+          "summary": "Buscar livro por ID",
+          "description": "Retorna um livro com base no ID fornecido.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID do livro",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Livro encontrado com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Livro"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Livro não encontrado"
+            },
+            "500": {
+              "description": "Erro interno do servidor"
+            }
+          }
+        },
+        "put": {
+          "summary": "Atualizar livro",
+          "description": "Atualiza os dados de um livro existente.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID do livro",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Livro"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Livro atualizado com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Livro"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Requisição inválida"
+            },
+            "404": {
+              "description": "Livro não encontrado"
+            },
+            "500": {
+              "description": "Erro interno do servidor"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Deletar livro",
+          "description": "Remove um livro com base no ID fornecido.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID do livro",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Livro deletado com sucesso"
+            },
+            "404": {
+              "description": "Livro não encontrado"
+            },
+            "500": {
+              "description": "Erro interno do servidor"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Livro": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "ID único do livro"
+            },
+            "titulo": {
+              "type": "string",
+              "description": "Título do livro"
+            },
+            "autor": {
+              "type": "string",
+              "description": "Autor do livro"
+            },
+            "genero": {
+              "type": "string",
+              "description": "Gênero do livro"
+            },
+            "ano": {
+              "type": "string",
+              "description": "Ano de publicação do livro"
+            }
+          },
+          "example": {
+            "id": "12345",
+            "titulo": "O Senhor dos Anéis",
+            "autor": "J.R.R. Tolkien",
+            "genero": "Fantasia",
+            "ano": "1954"
+          }
+        }
+      }
+    }
+  }
+  
