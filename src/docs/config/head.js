@@ -1,8 +1,8 @@
 import * as dotenv from 'dotenv';
-dotenv.config()
-
 import livrosRoutes from "../routes/livros.js";
 import livrosSchemas from "../schemas/livros.js";
+
+dotenv.config()
 
 
 const getServersInCorrectOrder = () => {
