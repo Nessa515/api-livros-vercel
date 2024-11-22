@@ -10,6 +10,9 @@ const app = express();
 app.use(express.json());
 app.use(route)
 app.use(cors());
+app.use(cors({
+  origin: "https://api-livros-vercel.vercel.app/",
+}));
 
 app.get("/", (req, res) => {
   res.status(200).redirect("/docs"); // Redirecionando para a rota '/docs' com a barra inicial
