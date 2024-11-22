@@ -11,6 +11,10 @@ app.use(express.json());
 app.use(route)
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.status(200).redirect("/docs"); // Redirecionando para a rota '/docs' com a barra inicial
+});
+
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(getSwaggerOptions()), {
     customCssUrl: [
         "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css"
@@ -19,7 +23,7 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(getSwaggerOptions
         "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.js",
         "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.js"
       ],
-    customSiteTitle: "API Barbeiro", // Personalizando o título da página de documentação
+    customSiteTitle: "API Livros", // Personalizando o título da página de documentação
 }));
 
 
