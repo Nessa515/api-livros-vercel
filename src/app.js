@@ -2,14 +2,25 @@ import express from "express";
 import route from "./routes/index.js";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
-import swaggerDocs from './docs/swagger.json' assert { type: 'json' };
+import swaggerJSDoc from "swagger-jsdoc";
+import getSwaggerOptions from "./docs/config/head.js";
 
 const app = express();
 
 app.use(express.json());
 app.use(route)
 app.use(cors());
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(getSwaggerOptions()), {
+    customCssUrl: [
+        "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css"
+      ],
+      customJsUrl: [
+        "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.js"
+      ],
+    customSiteTitle: "API Barbeiro", // Personalizando o título da página de documentação
+}));
 
 
 export default app;

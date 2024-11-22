@@ -10,6 +10,7 @@
         "get": {
           "summary": "Listar livros",
           "description": "Retorna todos os livros ou permite filtrar por atributos específicos.",
+          "tags": ["Livros"],
           "parameters": [
             {
               "name": "id",
@@ -79,6 +80,7 @@
         "post": {
           "summary": "Inserir livro",
           "description": "Insere um novo livro no sistema.",
+          "tags": ["Livros"],
           "requestBody": {
             "required": true,
             "content": {
@@ -113,6 +115,7 @@
         "get": {
           "summary": "Buscar livro por ID",
           "description": "Retorna um livro com base no ID fornecido.",
+          "tags": ["Livros"],
           "parameters": [
             {
               "name": "id",
@@ -146,6 +149,7 @@
         "put": {
           "summary": "Atualizar livro",
           "description": "Atualiza os dados de um livro existente.",
+          "tags": ["Livros"],
           "parameters": [
             {
               "name": "id",
@@ -192,6 +196,7 @@
         "delete": {
           "summary": "Deletar livro",
           "description": "Remove um livro com base no ID fornecido.",
+          "tags": ["Livros"],
           "parameters": [
             {
               "name": "id",
