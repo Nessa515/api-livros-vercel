@@ -9,7 +9,11 @@ const app = express();
 
 app.use(express.json());
 app.use(route)
-app.use(cors());
+app.use(cors({
+  origin: "https://api-livros-vercel.vercel.app/", // Permite todas as origens. Substitua por um domínio específico, se necessário.
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Permite métodos HTTP usados pela API.
+  allowedHeaders: ["Content-Type", "Authorization"], // Cabeçalhos permitidos.
+}));
 
 app.get("/", (req, res) => {
   res.status(200).redirect("/docs"); // Redirecionando para a rota '/docs' com a barra inicial
