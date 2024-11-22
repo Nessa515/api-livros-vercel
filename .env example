@@ -1,3 +1,5 @@
-MONGO_URI=mongodb+srv://<db_username>:<db_password>@nodeexpressprojects.bfsjf3w.mongodb.net/?retryWrites=true&w=majority&appName=NodeExpressProjects
-
+MONGO_URI=mongodb+srv://nuvem:9kQCWOn24GxV3jvM@nodeexpressprojects.bfsjf3w.mongodb.net/Livros?retryWrites=true&w=majority&appName=NodeExpressProjects
 PORT=3000
+
+SWAGGER_DEV_URL='http://localhost:3000'
+SWAGGER_PROD_URL='https://api-livros-vercel.vercel.app/'
